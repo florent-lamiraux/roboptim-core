@@ -116,8 +116,11 @@ namespace roboptim
     /// \brief Vector type.
     typedef typename function_t::vector_t vector_t;
 
+    /// \brief Argument type
+    typedef typename function_t::argument_t argument_t;
+
     /// \brief Optional vector defines a starting point.
-    typedef boost::optional<vector_t> startingPoint_t;
+    typedef boost::optional<argument_t> startingPoint_t;
 
     typedef typename function_t::interval_t interval_t;
     typedef typename function_t::intervals_t intervals_t;
@@ -308,6 +311,9 @@ namespace roboptim
     /// \brief Vector type.
     typedef typename function_t::vector_t vector_t;
 
+    /// \brief Argument type
+    typedef typename function_t::argument_t argument_t;
+
     /// \brief Size type.
     typedef typename function_t::size_type size_type;
 
@@ -315,7 +321,7 @@ namespace roboptim
     typedef std::vector<constraint_t> constraints_t;
 
     /// \brief Optional vector defines a starting point.
-    typedef boost::optional<vector_t> startingPoint_t;
+    typedef boost::optional<argument_t> startingPoint_t;
 
     typedef typename function_t::interval_t interval_t;
     typedef typename function_t::intervals_t intervals_t;

@@ -24,7 +24,7 @@ namespace roboptim
 {
   template <>
   inline BadGradient<EigenMatrixSparse>::BadGradient
-  (const vector_t& x,
+  (const argument_t& x,
    const gradient_t& analyticalGradient,
    const gradient_t& finiteDifferenceGradient,
    const value_type& threshold)
@@ -55,7 +55,7 @@ namespace roboptim
   }
 
   template <typename T>
-  BadGradient<T>::BadGradient (const vector_t& x,
+  BadGradient<T>::BadGradient (const argument_t& x,
 			       const gradient_t& analyticalGradient,
 			       const gradient_t& finiteDifferenceGradient,
 			       const value_type& threshold)
@@ -129,7 +129,7 @@ namespace roboptim
   template <>
   inline
   BadJacobian<EigenMatrixSparse>::BadJacobian
-  (const vector_t& x,
+  (const argument_t& x,
    const jacobian_t& analyticalJacobian,
    const jacobian_t& finiteDifferenceJacobian,
    const value_type& threshold)
@@ -164,7 +164,7 @@ namespace roboptim
 
 
   template <typename T>
-  BadJacobian<T>::BadJacobian (const vector_t& x,
+  BadJacobian<T>::BadJacobian (const argument_t& x,
                                const jacobian_t& analyticalJacobian,
                                const jacobian_t& finiteDifferenceJacobian,
                                const value_type& threshold)
@@ -263,7 +263,7 @@ namespace roboptim
   checkGradient
   (const GenericDifferentiableFunction<T>& function,
    typename GenericDifferentiableFunction<T>::size_type functionId,
-   const typename GenericDifferentiableFunction<T>::vector_t& x,
+   const typename GenericDifferentiableFunction<T>::argument_t& x,
    typename GenericDifferentiableFunction<T>::value_type threshold)
     throw ()
   {
@@ -281,7 +281,7 @@ namespace roboptim
   checkGradientAndThrow
   (const GenericDifferentiableFunction<T>& function,
    typename GenericDifferentiableFunction<T>::size_type functionId,
-   const typename GenericDifferentiableFunction<T>::vector_t& x,
+   const typename GenericDifferentiableFunction<T>::argument_t& x,
    typename GenericDifferentiableFunction<T>::value_type threshold)
     throw (BadGradient<T>)
   {
@@ -299,7 +299,7 @@ namespace roboptim
   bool
   checkJacobian
   (const GenericDifferentiableFunction<T>& function,
-   const typename GenericDifferentiableFunction<T>::vector_t& x,
+   const typename GenericDifferentiableFunction<T>::argument_t& x,
    typename GenericDifferentiableFunction<T>::value_type threshold)
     throw ()
   {
@@ -316,7 +316,7 @@ namespace roboptim
   void
   checkJacobianAndThrow
   (const GenericDifferentiableFunction<T>& function,
-   const typename GenericDifferentiableFunction<T>::vector_t& x,
+   const typename GenericDifferentiableFunction<T>::argument_t& x,
    typename GenericDifferentiableFunction<T>::value_type threshold)
     throw (BadJacobian<T>)
   {
@@ -343,7 +343,7 @@ namespace roboptim
      double& trunc,
      const typename GenericFunction<T>::argument_t& argument,
      typename GenericFunction<T>::size_type idFunction,
-     typename GenericFunction<T>::argument_t& xEps) const throw ()
+     typename GenericFunction<T>::argument_t xEps) const throw ()
     {
       /* Compute the derivative using the 5-point rule (x-h, x-h/2, x,
 	 x+h/2, x+h). Note that the central point is not used.
@@ -401,7 +401,7 @@ namespace roboptim
     (value_type epsilon,
      jacobian_t& jacobian,
      const argument_t& argument,
-     argument_t& xEps) const throw ()
+     argument_t xEps) const throw ()
     {
 #ifndef ROBOPTIM_DO_NOT_CHECK_ALLOCATION
       Eigen::internal::set_is_malloc_allowed (true);
@@ -438,7 +438,7 @@ namespace roboptim
     (value_type epsilon,
      jacobian_t& jacobian,
      const argument_t& argument,
-     argument_t& xEps) const throw ()
+     argument_t xEps) const throw ()
     {
       for (typename jacobian_t::Index i = 0;
 	   i < this->adaptee_.outputSize(); ++i)
@@ -456,7 +456,7 @@ namespace roboptim
      gradient_t& gradient,
      const argument_t& argument,
      size_type idFunction,
-     argument_t& xEps) const throw ()
+     argument_t xEps) const throw ()
     {
       assert (adaptee_.outputSize () - idFunction > 0);
       adaptee_ (result_, argument);
@@ -477,7 +477,7 @@ namespace roboptim
      gradient_t& gradient,
      const argument_t& argument,
      size_type idFunction,
-     argument_t& xEps) const throw ()
+     argument_t xEps) const throw ()
     {
       assert (this->adaptee_.outputSize () - idFunction > 0);
 
@@ -499,7 +499,7 @@ namespace roboptim
      gradient_t& gradient,
      const argument_t& argument,
      size_type idFunction,
-     argument_t& xEps) const throw ()
+     argument_t xEps) const throw ()
     {
       assert (this->adaptee_.outputSize () - idFunction > 0);
 
@@ -556,7 +556,7 @@ namespace roboptim
      gradient_t& gradient,
      const argument_t& argument,
      size_type idFunction,
-     argument_t& xEps) const throw ()
+     argument_t xEps) const throw ()
     {
       assert (this->adaptee_.outputSize () - idFunction > 0);
 

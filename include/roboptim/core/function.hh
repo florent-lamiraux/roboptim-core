@@ -35,7 +35,6 @@
 # include <Eigen/Core>
 # include <Eigen/Dense>
 # include <Eigen/Sparse>
-# include <Eigen/Ref>
 
 # include <log4cxx/logger.h>
 
